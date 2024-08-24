@@ -3,11 +3,11 @@ import CanvasJSReact from '@canvasjs/react-charts';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default function GraphExemple(){
+export default function GraphScatter(){
 
   return(
     <div>
-      <CanvasJSChart options={DataPointsBuilder([
+      <CanvasJSChart options={GraphScatterBuilder([
       { x: 14.2, y: 215},
       { x: 12.9, y: 175},
       { x: 16.4, y: 325},
@@ -30,7 +30,7 @@ export default function GraphExemple(){
   )
 };
 
-function DataPointsBuilder(dataPoints){
+function GraphScatterBuilder(dataPoints){
 
   var options = {
     theme: "dark2",

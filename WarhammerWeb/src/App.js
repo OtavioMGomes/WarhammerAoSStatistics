@@ -1,14 +1,19 @@
 import './App.css';
-import GraphExemple from './Components/graphExemple/GraphExemple';
+import GraphScatter from './Components/graphs/GraphScatter';
+import NavegationBar from './Components/navegationBar/NavegationBar';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <GraphExemple/>
+        <nav>
+          <NavegationBar/>
+        </nav>
+        <GraphScatter/>
       </header>
     </div>
   );
+  
 }
 
 export default App;

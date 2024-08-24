@@ -20,35 +20,31 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tb_model_statistic")
-@SequenceGenerator(name="stat", sequenceName="sq_model_statistic", allocationSize=1)
-public class Statistic {
+@Table(name="tb_keyword")
+@SequenceGenerator(name="keyword", sequenceName="sq_keyword", allocationSize=1)
+public class Keyword {
 
   @Id
-  @Column(name="id_model_statistic")
-  @GeneratedValue(generator="stat", strategy = GenerationType.SEQUENCE)
+  @Column(name="id_keyword")
+  @GeneratedValue(generator="keyword", strategy = GenerationType.SEQUENCE)
   private Integer id;
-
+  
   @NotBlank
-  @Column(name="nm_statistic")
+  @Column(name="ds_keyword")
   private String name;
-
-  @NotBlank
-  @Column(name="vl_statistic")
-  private String value;
 
   @JsonIgnore
   @ManyToOne
   @JoinColumn(name="id_model")
   private Model model;
 
-  public Statistic(@NotBlank String name) {
+  public Keyword(@NotBlank String name) {
     this.name = name;
   }
 
-  public Statistic(@NotBlank String name, @NotBlank String value) {
+  public Keyword(@NotBlank String name, Model model) {
     this.name = name;
-    this.value = value;
+    this.model = model;
   }
 
   public void addModel(Model model){
