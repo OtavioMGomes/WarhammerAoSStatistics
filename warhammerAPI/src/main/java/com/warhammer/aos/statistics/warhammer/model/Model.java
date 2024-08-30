@@ -1,6 +1,11 @@
 package com.warhammer.aos.statistics.warhammer.model;
 
 import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.warhammer.aos.statistics.warhammer.utility.DamageList;
+import com.warhammer.aos.statistics.warhammer.utility.DiceRoll;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -70,7 +75,7 @@ public class Model {
     this.units.add(unit);
   }
 
-  public String getStatistic(String name){
+  public String getStatisticByName(String name){
 
     String adjName = name.toLowerCase();
     String value = null;
@@ -85,6 +90,74 @@ public class Model {
 
     return value;
     
+  }
+
+  @JsonIgnore
+  public Double getAvgDamage(){
+
+    Double dmg = 0.0;
+
+    for(Attack a: this.attacks){
+      dmg += a.getAvgDamage();
+    }
+
+    return dmg;
+  }
+
+  public Double getAvgDamage(String save, String ward){
+
+    Double dmg = 0.0;
+
+    for(Attack a: this.attacks){
+      dmg += a.getAvgDamage(save, ward);
+    }
+
+    return dmg;
+  }
+
+  public Double getAvgDamage(Unit unit){
+
+    Double dmg = 0.0;
+
+    for(Attack a: this.attacks){
+      dmg += a.getAvgDamage(unit);
+    }
+
+    return dmg;
+  }
+
+  @JsonIgnore
+  public Map<String, Double> getDamageBySave(){
+
+    Map<String, Double> map = DamageList.getMap();
+    Double dmg;
+
+    for(Attack a: this.attacks){
+      for (String key : map.keySet()) {
+        dmg = a.getAvgDamage() * (1 - DiceRoll.getRollProbability(key));
+        Double dmgComputed = map.get(key);
+        if(dmgComputed == null){
+          dmgComputed = 0.0;
+        }
+        map.put(key, dmgComputed + dmg);
+      }
+    }
+    
+    return map;
+  }
+
+  @JsonIgnore
+  public Double getAvgSave(){
+
+    String saveStat = this.getStatisticByName("save");
+    String wardStat = this.getStatisticByName("ward");
+    
+    Double save = DiceRoll.getRollProbability(saveStat);
+    Double ward = DiceRoll.getRollProbability(wardStat);
+
+    Double avgSave = save + (ward * (1 - save));
+    
+    return avgSave;
   }
 
 }

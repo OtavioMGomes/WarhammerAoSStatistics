@@ -5,6 +5,7 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.warhammer.aos.statistics.warhammer.utility.DamageList;
 import com.warhammer.aos.statistics.warhammer.utility.DiceRoll;
+import com.warhammer.aos.statistics.warhammer.utility.StatisticConverter;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -69,6 +70,7 @@ public class Attack {
     model.addToList(this);
   }
 
+  @JsonIgnore
   public Double getAvgDamage(){
 
     Double dmg = null;
@@ -85,11 +87,14 @@ public class Attack {
   public Double getAvgDamage(String save, String ward){
 
     Double dmg = null;
+    Double saveAdj = StatisticConverter.convert(save);
+    Double rendAdj = StatisticConverter.convert(this.rend);
+    Double dmgNotSaved = (1 - DiceRoll.getRollProbability(saveAdj - rendAdj));
+    Double dmgNotWarded = (1 - DiceRoll.getRollProbability(ward));
 
     dmg = this.getAvgDamage()
-          * DiceRoll.getRollProbability(save)
-          * DiceRoll.getRollProbability(ward)
-
+          * dmgNotSaved
+          * dmgNotWarded
     ;
 
     return dmg;
@@ -98,18 +103,18 @@ public class Attack {
   public Double getAvgDamage(Unit unit){
 
     Double dmg = null;
+    String save = unit.getModel().getStatisticByName("save");
+    String ward = unit.getModel().getStatisticByName("ward");
 
-    dmg = this.getAvgDamage()
-          * DiceRoll.getRollProbability(unit.getModel().getStatistic("save"))
-          * DiceRoll.getRollProbability(unit.getModel().getStatistic("ward"))
-    ;
+    dmg = this.getAvgDamage(save, ward);
 
     return dmg;
   }
 
+  @JsonIgnore
   public Map<String, Double> getDamageBySave(){
 
-    Map<String, Double> map = new DamageList().getMap();
+    Map<String, Double> map = DamageList.getMap();
     Double dmg;
 
     for (String key : map.keySet()) {

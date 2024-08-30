@@ -1,7 +1,9 @@
 package com.warhammer.aos.statistics.warhammer.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.warhammer.aos.statistics.warhammer.utility.DamageList;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +46,57 @@ public class Unit {
 
   public void addModel(Model model){
     model.addToList(this);
+  }@JsonIgnore
+
+  public String getStatisticByName(String name){
+
+    String adjName = name.toLowerCase();
+
+    return this.getModel().getStatisticByName(adjName);
+    
   }
+
+  @JsonIgnore
+  public Double getAvgDamage(){
+
+    return model.getAvgDamage() * this.quantity;
+
+  }
+
+  public Double getAvgDamage(String save, String ward){
+
+    return model.getAvgDamage(save, ward) * this.quantity;
+  }
+
+  public Double getAvgDamage(Unit unit){
+
+    return model.getAvgDamage(unit) * this.quantity;
+  }
+
+  @JsonIgnore
+  public Map<String, Double> getDamageBySave(){
+
+    Map<String, Double> map = DamageList.getMap();
+    Map<String, Double> mapModel = model.getDamageBySave();
+
+    for (String key : map.keySet()) {
+        Double dmg = mapModel.get(key);
+        if(dmg == null){
+          dmg = 0.0;
+        }
+        map.put(key, dmg * this.quantity);
+    }
+    
+    return map;
+  }
+
+  @JsonIgnore
+  public Double getAvgSave(){
+
+    return model.getAvgSave();
+
+  }
+
+  
   
 }

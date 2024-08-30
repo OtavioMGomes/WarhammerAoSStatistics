@@ -1,27 +1,37 @@
 package com.warhammer.aos.statistics.warhammer.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.warhammer.aos.statistics.warhammer.model.Model;
 import com.warhammer.aos.statistics.warhammer.repository.ModelRepository;
 
 @Service
 public class ModelService {
 
   @Autowired
-  ModelRepository unitRepository;
+  ModelRepository repository;
 
-    // public Page<Atividade> listAll(Pageable pageable){
-    //     return repository.findAll(pageable);
-    // }
+  public Page<Model> listAll(Pageable pageable){
+      return repository.findAll(pageable);
+  }
 
-    // public Optional<Atividade> getById(Integer id){
-    //     return repository.findById(id);
-    // }
+  public Optional<Model> getById(Integer id){
+      return repository.findById(id);
+  }
 
-    // public void save(Atividade tipoAtividade){
-    //     tipoAtividade.setDtRegistro();
-    //     repository.save(tipoAtividade);
-    // }
+  public Optional<Model> findByName(String name){
+    return repository.findByName(name);
+}
+
+  public void save(Model model){
+      repository.save(model);
+  }
+
+
   
 }

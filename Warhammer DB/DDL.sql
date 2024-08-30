@@ -8,6 +8,8 @@ create sequence sq_attack;
 
 create sequence sq_unit;
 
+create sequence sq_keyword;
+
 CREATE TABLE tb_model(
 id_model integer NOT NULL, nm_model text,
   CONSTRAINT pk_model_id PRIMARY KEY(id_model)

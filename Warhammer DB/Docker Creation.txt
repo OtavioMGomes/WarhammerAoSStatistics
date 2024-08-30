@@ -6,7 +6,7 @@ docker rmi warhammerdb
 
 -- Create
 
-docker build . --tag warhammerdb -f Warhammer\ DB/Dockerfile
+`docker build . --tag warhammerdb -f Warhammer\ DB/Dockerfile`
 
 docker run --name WarhammerDB -p 5432:5432 warhammerdb;
 

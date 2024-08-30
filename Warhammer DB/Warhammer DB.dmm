@@ -38,23 +38,6 @@
 					"pg": {
 						"generatedIdentity": "no"
 					}
-				},
-				{
-					"id": "6b9dde00-aac5-4615-a9cc-edb7229697ed",
-					"name": "bl_is_general",
-					"datatype": "boolean",
-					"param": "",
-					"pk": false,
-					"nn": false,
-					"comment": "",
-					"defaultvalue": "",
-					"data": "",
-					"collation": null,
-					"list": false,
-					"after": "",
-					"pg": {
-						"generatedIdentity": "no"
-					}
 				}
 			],
 			"relations": [
@@ -128,7 +111,7 @@
 				},
 				{
 					"id": "b15f90cc-e6af-4cc3-9862-7196d365e917",
-					"name": "nm_statistics",
+					"name": "nm_statistic",
 					"datatype": "text",
 					"param": "",
 					"pk": false,
@@ -230,7 +213,7 @@
 				},
 				{
 					"id": "20369352-520f-4690-9518-508433b7bee3",
-					"name": "nm_keyword",
+					"name": "ds_keyword",
 					"datatype": "text",
 					"param": "",
 					"pk": false,
@@ -316,6 +299,23 @@
 					"id": "766e38ea-2b8e-46e8-8471-fa183db0ed29",
 					"name": "nm_attack",
 					"datatype": "text",
+					"param": "",
+					"pk": false,
+					"nn": false,
+					"comment": "",
+					"defaultvalue": "",
+					"data": "",
+					"collation": null,
+					"list": false,
+					"after": "",
+					"pg": {
+						"generatedIdentity": "no"
+					}
+				},
+				{
+					"id": "41bfa730-4685-46f6-ace0-f970e9b6c879",
+					"name": "bl_is_shooting",
+					"datatype": "boolean",
 					"param": "",
 					"pk": false,
 					"nn": false,
@@ -641,7 +641,7 @@
 		"0a4d7a86-a63a-493f-8d1a-8adfb32fa92f": {
 			"id": "0a4d7a86-a63a-493f-8d1a-8adfb32fa92f",
 			"visible": true,
-			"name": "tb_keyword_id_model_fkey",
+			"name": "fk_keyword_model",
 			"desc": "",
 			"type": "identifying",
 			"parent_key": "1ed57196-3ce0-45e0-a839-808f9b4a81df",
@@ -716,7 +716,7 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Sat Jul 13 2024 21:11:44 GMT-0300 (Brasilia Standard Time)"
+		"lastSaved": "Fri Aug 23 2024 21:43:15 GMT-0300 (Brasilia Standard Time)"
 	},
 	"otherObjects": {
 		"da071e4e-36e9-45fd-aae3-a0a0698ebd22": {
@@ -774,6 +774,20 @@
 			"pg": {
 				"schema": ""
 			}
+		},
+		"78206de3-3d8c-4366-a893-37ec8e11908f": {
+			"id": "78206de3-3d8c-4366-a893-37ec8e11908f",
+			"visible": true,
+			"name": "sq_keyword",
+			"desc": "",
+			"type": "Sequence",
+			"code": "create sequence sq_keyword;",
+			"lines": [],
+			"generate": true,
+			"generateCustomCode": true,
+			"pg": {
+				"schema": ""
+			}
 		}
 	},
 	"diagrams": {
@@ -825,8 +839,8 @@
 				"0a486a5a-c1b4-4856-9808-e8cc5e394dcf": {
 					"referencedItemId": "0a486a5a-c1b4-4856-9808-e8cc5e394dcf",
 					"x": 428,
-					"y": 203,
-					"gHeight": 189,
+					"y": 188,
+					"gHeight": 208,
 					"gWidth": 237,
 					"color": "#ffffff",
 					"background": "#03a9f4",
@@ -887,6 +901,17 @@
 					"background": "#03a9f4",
 					"resized": true,
 					"autoExpand": true
+				},
+				"78206de3-3d8c-4366-a893-37ec8e11908f": {
+					"referencedItemId": "78206de3-3d8c-4366-a893-37ec8e11908f",
+					"x": 387,
+					"y": 786,
+					"gHeight": 44,
+					"gWidth": 150,
+					"color": "#eee",
+					"background": "#795548",
+					"resized": false,
+					"autoExpand": true
 				}
 			},
 			"scroll": {
@@ -901,6 +926,7 @@
 		"656406b9-c5e2-4c77-b44a-65682450cf01",
 		"c85f2d5d-0dc5-4039-b665-6fd0c9c404ff",
 		"d0a26bc5-96e4-4bc4-9aee-fcbc51ea2754",
+		"78206de3-3d8c-4366-a893-37ec8e11908f",
 		"06d02178-5a4c-4065-a46e-6a440f9666a3",
 		"452f58c1-6130-47d4-8af7-b075f1559fd6",
 		"66cce86e-38c8-4ca6-8915-ed989a178a3a",
