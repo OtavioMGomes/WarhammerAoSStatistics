@@ -26,18 +26,18 @@
 					"id": "c4572c1d-8f58-4356-ab01-a3080cbce7c4",
 					"name": "nm_model",
 					"datatype": "text",
-					"param": "",
 					"pk": false,
 					"nn": false,
 					"comment": "",
 					"defaultvalue": "",
 					"data": "",
 					"collation": null,
-					"list": false,
 					"after": "",
 					"pg": {
 						"generatedIdentity": "no"
-					}
+					},
+					"param": "",
+					"list": false
 				}
 			],
 			"relations": [
@@ -208,8 +208,7 @@
 					"pg": {
 						"generatedIdentity": "no"
 					},
-					"fk": true,
-					"ref": "tb_model"
+					"fk": true
 				},
 				{
 					"id": "20369352-520f-4690-9518-508433b7bee3",
@@ -613,31 +612,6 @@
 			"generate": true,
 			"generateCustomCode": true
 		},
-		"f9f20b94-bbc4-4aa7-a438-2e598e892e95": {
-			"id": "f9f20b94-bbc4-4aa7-a438-2e598e892e95",
-			"visible": true,
-			"name": "fk_unit_model",
-			"desc": "",
-			"type": "identifying",
-			"parent_key": "1ed57196-3ce0-45e0-a839-808f9b4a81df",
-			"parent": "06d02178-5a4c-4065-a46e-6a440f9666a3",
-			"child": "32cfb418-b4a9-46ec-aa90-286033222a32",
-			"c_mp": "true",
-			"c_mch": "true",
-			"c_p": "one",
-			"c_ch": "many",
-			"c_cp": "",
-			"c_cch": "",
-			"cols": [
-				{
-					"id": "cecef53e-7774-4326-b358-37ff4f83b835",
-					"parentcol": "67eeefcf-5a69-4c5d-9415-00d694cb66d6",
-					"childcol": "cca614db-90d7-4a6f-a800-d46f9e6c13ff"
-				}
-			],
-			"generate": true,
-			"generateCustomCode": true
-		},
 		"0a4d7a86-a63a-493f-8d1a-8adfb32fa92f": {
 			"id": "0a4d7a86-a63a-493f-8d1a-8adfb32fa92f",
 			"visible": true,
@@ -658,6 +632,31 @@
 					"id": "344e3ab6-6c48-4045-b7e8-cd7cb97cc620",
 					"parentcol": "67eeefcf-5a69-4c5d-9415-00d694cb66d6",
 					"childcol": "a0dc3e50-5b55-44b1-93bd-9f13b3085760"
+				}
+			],
+			"generate": true,
+			"generateCustomCode": true
+		},
+		"f9f20b94-bbc4-4aa7-a438-2e598e892e95": {
+			"id": "f9f20b94-bbc4-4aa7-a438-2e598e892e95",
+			"visible": true,
+			"name": "fk_unit_model",
+			"desc": "",
+			"type": "identifying",
+			"parent_key": "1ed57196-3ce0-45e0-a839-808f9b4a81df",
+			"parent": "06d02178-5a4c-4065-a46e-6a440f9666a3",
+			"child": "32cfb418-b4a9-46ec-aa90-286033222a32",
+			"c_mp": "true",
+			"c_mch": "true",
+			"c_p": "one",
+			"c_ch": "many",
+			"c_cp": "",
+			"c_cch": "",
+			"cols": [
+				{
+					"id": "cecef53e-7774-4326-b358-37ff4f83b835",
+					"parentcol": "67eeefcf-5a69-4c5d-9415-00d694cb66d6",
+					"childcol": "cca614db-90d7-4a6f-a800-d46f9e6c13ff"
 				}
 			],
 			"generate": true,
@@ -716,7 +715,7 @@
 			"indexes": true,
 			"relations": true
 		},
-		"lastSaved": "Fri Aug 23 2024 21:43:15 GMT-0300 (Brasilia Standard Time)"
+		"lastSaved": "Thu Aug 29 2024 23:11:22 GMT-0300 (Brasilia Standard Time)"
 	},
 	"otherObjects": {
 		"da071e4e-36e9-45fd-aae3-a0a0698ebd22": {

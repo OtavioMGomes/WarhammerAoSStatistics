@@ -1,16 +1,11 @@
 import './App.css';
-import GraphScatter from './Components/graphs/GraphScatter';
-import NavegationBar from './Components/navegationBar/NavegationBar';
+import AppNavbar from './Components/NavBar/NavBar';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <nav>
-          <NavegationBar/>
-        </nav>
-        <GraphScatter/>
-      </header>
+      <AppNavbar/>
     </div>
   );
   
